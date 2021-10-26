@@ -1,7 +1,7 @@
-base     perspective
+base     bunwigi
 author   Sungbin Jeon
 email    clockoon@gmail.com
 date     2021-10-18
 name     Perspective Template
-desc     Clean, minimal, respensive, perspective depth
-url      https://www.dokuwiki.org/template:perspective
+desc     Clean, minimal, respensive, customizable 'bunwigi'
+url      https://www.dokuwiki.org/template:bunwigi

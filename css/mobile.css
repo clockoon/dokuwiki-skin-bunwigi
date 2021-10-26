@@ -6,6 +6,9 @@
 
 @media only screen and (max-width: 42em) {
 
+#dokuwiki__site {
+    width: 100%;
+}
 #dokuwiki__aside {
     width: 100%;
     float: none;

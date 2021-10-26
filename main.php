@@ -1,9 +1,9 @@
 <?php
 /**
- * DokuWiki Starter Template
+ * DokuWiki Perspective Template
  *
- * @link     http://dokuwiki.org/template:starter
- * @author   Anika Henke <anika@selfthinker.org>
+ * @link     http://dokuwiki.org/template:perspective
+ * @author   Sungbin Jeon <clockoon@gmail.com>
  * @license  GPL 2 (http://www.gnu.org/licenses/gpl.html)
  */
 
@@ -38,7 +38,7 @@ $sidebarElement = tpl_getConf('sidebarIsNav') ? 'nav' : 'aside';
             <?php tpl_includeFile('header.html') ?>
 
             <div class="headings">
-                <h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h1>
+                <!--<h1><?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?></h1>-->
                 <?php /* how to insert logo instead (if no CSS image replacement technique is used):
                         upload your logo into the data/media folder (root of the media manager) and replace 'logo.png' accordingly:
                         tpl_link(wl(),'<img src="'.ml('logo.png').'" alt="'.$conf['title'].'" />','id="dokuwiki__top" accesskey="h" title="[H]"') */ ?>
@@ -53,31 +53,38 @@ $sidebarElement = tpl_getConf('sidebarIsNav') ? 'nav' : 'aside';
             </div>
 
             <div class="tools">
-                <!-- USER TOOLS -->
+                <!-- Navbar -->
                 <?php if ($conf['useacl'] && $showTools): ?>
-                    <nav id="dokuwiki__usertools" aria-labelledby="dokuwiki__usertools_heading">
-                        <h3 class="a11y" id="dokuwiki__usertools_heading"><?php echo $lang['user_tools'] ?></h3>
-                        <ul>
-                            <?php if (!empty($_SERVER['REMOTE_USER'])) {
-                                echo '<li class="user">';
-                                tpl_userinfo(); /* 'Logged in as ...' */
-                                echo '</li>';
-                            } ?>
-                            <?php if (file_exists(DOKU_INC . 'inc/Menu/UserMenu.php')) {
-                                /* the first parameter is for an additional class, the second for if SVGs should be added */
-                                echo (new \dokuwiki\Menu\UserMenu())->getListItems('action ', false);
-                            } else {
-                                /* tool menu before Greebo */
-                                _tpl_usertools();
-                            } ?>
-                        </ul>
+                    <nav id="dokuwiki__navbar" aria-labelledby="dokuwiki__navbar_heading">
+                        <div class="navbar_wrapper">
+                            <!--<h3 class="a11y" id="dokuwiki__navbar_heading"><?php echo $lang['user_tools'] ?></h3>-->
+                            <div class="navbar_title">
+                                <ul>
+                                    <li>
+                                        <?php tpl_link(wl(),$conf['title'],'accesskey="h" title="[H]"') ?>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="navbar_search">
+                                 <?php tpl_searchform($ajax=true, $autocomplete=false); ?>
+                            </div>
+                            <div class="navbar_sitetools">
+                                <ul>
+                                    <?php if (file_exists(DOKU_INC . 'inc/Menu/SiteMenu.php')) {
+                                    echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action ', false);
+                                    } else {
+                                        _tpl_sitetools();
+                                    } ?>
+                                </ul>
+                            </div>
+                        </div>
                     </nav>
                 <?php endif ?>
 
                 <!-- SITE TOOLS -->
-                <nav id="dokuwiki__sitetools" aria-labelledby="dokuwiki__sitetools_heading">
+                <!-- <nav id="dokuwiki__sitetools" aria-labelledby="dokuwiki__sitetools_heading">
                     <h3 class="a11y" id="dokuwiki__sitetools_heading"><?php echo $lang['site_tools'] ?></h3>
-                    <?php tpl_searchform() ?>
+                    <?php //tpl_searchform() ?>
                     <?php
                         // mobile menu (combines all menus in one dropdown)
                         // if (file_exists(DOKU_INC . 'inc/Menu/MobileMenu.php')) {
@@ -87,13 +94,15 @@ $sidebarElement = tpl_getConf('sidebarIsNav') ? 'nav' : 'aside';
                         // }
                     ?>
                     <ul>
-                        <?php if (file_exists(DOKU_INC . 'inc/Menu/SiteMenu.php')) {
-                            echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action ', false);
-                        } else {
-                            _tpl_sitetools();
-                        } ?>
+                        <?php if (file_exists(DOKU_INC . 'inc/Menu/UserMenu.php')) {
+                                /* the first parameter is for an additional class, the second for if SVGs should be added */
+                                echo (new \dokuwiki\Menu\UserMenu())->getListItems('action ', false);
+                            } else {
+                                /* tool menu before Greebo */
+                                _tpl_usertools();
+                            } ?>
                     </ul>
-                </nav>
+                </nav>-->
 
             </div>
             <div class="clearer"></div>
@@ -145,6 +154,7 @@ $sidebarElement = tpl_getConf('sidebarIsNav') ? 'nav' : 'aside';
             <!-- PAGE ACTIONS -->
             <?php if ($showTools): ?>
                 <nav id="dokuwiki__pagetools" aria-labelledby="dokuwiki__pagetools_heading">
+                    <div class="pagetools_wrapper">
                     <h3 class="a11y" id="dokuwiki__pagetools_heading"><?php echo $lang['page_tools'] ?></h3>
                     <ul>
                         <?php if (file_exists(DOKU_INC . 'inc/Menu/PageMenu.php')) {
@@ -153,6 +163,7 @@ $sidebarElement = tpl_getConf('sidebarIsNav') ? 'nav' : 'aside';
                             _tpl_pagetools();
                         } ?>
                     </ul>
+                    </div>
                 </nav>
             <?php endif; ?>
         </div><!-- /wrapper -->
@@ -163,7 +174,26 @@ $sidebarElement = tpl_getConf('sidebarIsNav') ? 'nav' : 'aside';
             <?php tpl_license('button') /* content license, parameters: img=*badge|button|0, imgonly=*0|1, return=*0|1 */ ?>
 
             <?php tpl_includeFile('footer.html') ?>
-        </div></footer><!-- /footer -->
+        </div>
+        <!-- USER INFO -->
+            <div class="dokuwiki__userinfo">
+                <?php if (!empty($_SERVER['REMOTE_USER'])) {
+                    //echo '<li class="user">';
+                    tpl_userinfo(); /* 'Logged in as ...' */
+                    //echo '</li>';
+                } ?>
+                <ul>
+                    <?php if (file_exists(DOKU_INC . 'inc/Menu/UserMenu.php')) {
+                        /* the first parameter is for an additional class, the second for if SVGs should be added */
+                        echo (new \dokuwiki\Menu\UserMenu())->getListItems('action ', false);
+                        } else {
+                        /* tool menu before Greebo */
+                            _tpl_usertools();
+                        } ?>
+                </ul>
+            </div>
+
+        </footer><!-- /footer -->
     </div></div><!-- /site -->
 
     <div class="no"><?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?></div>

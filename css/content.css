@@ -32,6 +32,18 @@
 */
 /* hx margin-left = (1 / font-size) * .levelx-margin */
 
+/* TOC */
+#dw__toc {
+    background-color: __background__;
+    border-left: 1px solid __border__;
+}
+#dw__toc ul li {
+    list-style: square;
+    margin-left: 1em;
+}
+#dw__toc ul li a {
+    color: __text_heading__;
+}
 
 /*____________ links to wiki pages (addition to _links) ____________*/
 

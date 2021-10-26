@@ -11,7 +11,7 @@
 ********************************************************************/
 
 #dokuwiki__header {
-    margin: 1em 0 0;
+    margin: 2em 0 0 0;
 }
 
 #dokuwiki__header .headings {
@@ -46,19 +46,21 @@
 
 #dokuwiki__header form.search {
     margin: .5em 0 0;
-    display: block;
+    /*display: block;*/
 }
 #dokuwiki__header form.search #qsearch__in {
-    width: 12em;
-    margin-right: .5em;
+    width: 100%;
 }
-[dir=rtl] #dokuwiki__header form.search #qsearch__in {
-    margin-right: 0;
-    margin-left: .5em;
+#dokuwiki__header form.search #qsearch__out {
+    width: 83.4%;
+    margin-left: 1.1em;
+}
+#dokuwiki__header form.search button{
+    display: none;
 }
 
 #dokuwiki__header div.breadcrumbs {
-    margin-bottom: .3em;
+    margin-bottom: 1em;
 }
 #dokuwiki__header div.breadcrumbs a {
     color: __existing__;
@@ -70,20 +72,39 @@
 ********************************************************************/
 
 /* make wiki links look the same as tool links in tool bars */
-#dokuwiki__usertools a.wikilink1,
+#dokuwiki__navbar a.wikilink1,
 #dokuwiki__pagetools a.wikilink1,
-#dokuwiki__usertools a.wikilink2,
+#dokuwiki__navbar a.wikilink2,
 #dokuwiki__pagetools a.wikilink2 {
     color: __link__;
     border-bottom-width: 0;
 }
-#dokuwiki__usertools a.wikilink2:hover,
+#dokuwiki__navbar a.wikilink2:hover,
 #dokuwiki__pagetools a.wikilink2:hover,
-#dokuwiki__usertools a.wikilink2:active,
+#dokuwiki__navbar a.wikilink2:active,
 #dokuwiki__pagetools a.wikilink2:active,
-#dokuwiki__usertools a.wikilink2:focus,
+#dokuwiki__navbar a.wikilink2:focus,
 #dokuwiki__pagetools a.wikilink2:focus {
     text-decoration: underline;
+}
+
+#dokuwiki__navbar a,
+#dokuwiki__pagetools a {
+    color: __text_navbar__;
+}
+
+#dokuwiki__navbar .navbar_title a,
+#dokuwiki__navbar .navbar_title a:hover,
+#dokuwiki__navbar .navbar_title a:active,
+#dokuwiki__navbar .navbar_title a:focus {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/*Search form*/
+.dokuwiki form.search div.ajax_qsearch {
+top: auto;
+left: 0em;
 }
 
 /* highlight selected tool */
@@ -112,30 +133,66 @@
     font-weight: bold;
 }
 
-/*____________ user tools ____________*/
+/*____________ navbar ____________*/
 
-#dokuwiki__usertools {
-    position: absolute;
+#dokuwiki__navbar {
+    position: fixed;
     top: 0;
     right: 0;
     border-bottom: 1px solid __border__;
     background-color: __background_alt__;
     width: 100%;
+    z-index: 99;
+    height: 3em;
 }
-#dokuwiki__usertools ul,
-#dokuwiki__pagetools ul {
-    /* imitate #dokuwiki__site */
+#dokuwiki__navbar div.navbar_wrapper {
+    text-align: center;
+    line-height: 3em;
+    display: grid;
+    grid-template-columns: 20fr 60fr 20fr;
+}
+#dokuwiki__navbar div.navbar_title {
+    float: left;
+}
+#dokuwiki__navbar div.navbar_title ul{
+    float: right;
+    padding-right: 1em;
+}
+#dokuwiki__navbar div.navbar_search {
     margin: 0 auto;
-    max-width: __site_width__;
+    width: __site_width__;
+    border-left: 1px solid __border__;
+    border-right: 1px solid __border__;
     padding: 0 1em;
+    display: inline-block;
 }
-#dokuwiki__usertools ul li.user {
+#dokuwiki__navbar div.navbar_sitetools {
+    float: right;
+}
+#dokuwiki__navbar div.navbar_sitetools ul {
+    float: left;
+    padding-left: 1em;
+}
+#dokuwiki__navbar div.navbar_sitetools ul li {
+    margin: 0 1.5em 0 0;
+}
+#dokuwiki__navbar ul {
+    display: inline;
+    padding: 0;
+}
+#dokuwiki__navbar ul li.user {
     float: left;
     margin-left: 0;
 }
-[dir=rtl] #dokuwiki__usertools ul li.user {
+[dir=rtl] #dokuwiki__navbar ul li.user {
     float: right;
     margin-right: 0;
+}
+#dokuwiki__navbar ul li.navbar_title {
+    float: left;
+    margin-left: 0;
+    width:100%;
+    text-align: left;
 }
 
 /*____________ page tools ____________*/
@@ -148,6 +205,18 @@
     background-color: __background_alt__;
     width: 100%;
     z-index: 10;
+    height: 3em;
+}
+#dokuwiki__pagetools div.pagetools_wrapper {
+    width: __site_width__;
+    line-height: 3em;
+    border-left: 1px solid __border__;
+    border-right: 1px solid __border__;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+#dokuwiki__pagetools div.pagetools_wrapper ul {
+    padding: 0;
 }
 #dokuwiki__pagetools ul li {
     display: inline;
@@ -271,4 +340,16 @@
 #dokuwiki__footer .license img {
     margin: 0 .5em 0 0;
     float: none;
+}
+
+#dokuwiki__footer .dokuwiki__userinfo {
+    margin-top: 2em;
+}
+
+#dokuwiki__footer .dokuwiki__userinfo ul{
+    float: right;
+}
+
+#dokuwiki__footer .dokuwiki__userinfo ul li{
+    display: inline;
 }

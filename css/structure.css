@@ -10,7 +10,8 @@ body {
 #dokuwiki__site {
     margin: 0 auto;
     max-width: __site_width__;
-    padding: 1.4em 1em;
+    padding: 0em 1em 1.4em 1em;
+    border: 1px solid __border__
 }
 #dokuwiki__site > .site {
 }
