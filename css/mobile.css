@@ -4,10 +4,12 @@
  * @author Anika Henke <anika@selfthinker.org>
  */
 
-@media only screen and (max-width: 42em) {
+@media only screen and (max-width: 60em) {
 
 #dokuwiki__site {
-    width: 100%;
+    width: 100vw;
+    max-width: none;
+    padding: 0 0 1.4em 0;
 }
 #dokuwiki__aside {
     width: 100%;
@@ -30,6 +32,9 @@
     margin-right: 0;
 }
 
+#dokuwiki__header {
+    margin: 6em 0 0 0;
+}
 #dokuwiki__header .headings {
     margin: 2.1em 0 0;
 }
@@ -54,6 +59,39 @@
     text-align: right;
 }
 
+#dokuwiki__navbar {
+    height: 6em;
+}
+#dokuwiki__navbar div.navbar_wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3em 3em;
+    grid-template-areas: "navbar_title navbar_sitetools" "navbar_search navbar_search";
+}
+#dokuwiki__navbar .navbar_title,
+#dokuwiki__navbar .navbar_sitetools {
+    border-left: 1px solid __border__;
+    border-right: 1px solid __border__;
+}
+#dokuwiki__navbar div.navbar_title ul {
+    float: none;
+    padding: 0;
+    margin: 0 auto;
+}
+#dokuwiki__header .tools ul li {
+    margin: 0 auto;
+}
+#dokuwiki__navbar .navbar_search {
+    width: 100% !important;
+    border-top: 1px solid __border__;
+    padding: 0 !important;
+}
+#dokuwiki__header form.search #qsearch__in {
+    width: calc(100vw-2em);
+}
+#dokuwiki__navbar .navbar_sitetools ul {
+    float: none !important;
+    padding: 0;
+}
 #dokuwiki__sitetools ul {
     padding: 0;
 }
@@ -66,6 +104,7 @@
 
 #dokuwiki__header div.breadcrumbs {
     margin-bottom: .7em;
+    padding: 0 1em;
 }
 
 
@@ -84,5 +123,27 @@
     left: 1em !important;
 }
 
+#dokuwiki__content {
+    padding: 0 1em;
+}
+#dw__toc {
+    width: 100%;
+    border-width: 1px 0;
+    border-color: __border__;
+    border-style: solid;
+}
+#dokuwiki__footer {
+    padding: 0 1em;
+}
 
+#dokuwiki__pagetools div.pagetools_wrapper {
+    width: 100vw;
+    padding: 0;
+}
+#dokuwiki__pagetools div.pagetools_wrapper ul {
+    padding: 0 1em;
+}
+#dokuwiki__pagetools ul li {
+    margin: 0 1em 0 0;
+}
 } /* /@media */

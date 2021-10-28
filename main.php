@@ -71,7 +71,7 @@ $sidebarElement = tpl_getConf('sidebarIsNav') ? 'nav' : 'aside';
                             <div class="navbar_sitetools">
                                 <ul>
                                     <?php if (file_exists(DOKU_INC . 'inc/Menu/SiteMenu.php')) {
-                                    echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action ', false);
+                                    echo (new \dokuwiki\Menu\SiteMenu())->getListItems('action ', true);
                                     } else {
                                         _tpl_sitetools();
                                     } ?>
@@ -158,7 +158,7 @@ $sidebarElement = tpl_getConf('sidebarIsNav') ? 'nav' : 'aside';
                     <h3 class="a11y" id="dokuwiki__pagetools_heading"><?php echo $lang['page_tools'] ?></h3>
                     <ul>
                         <?php if (file_exists(DOKU_INC . 'inc/Menu/PageMenu.php')) {
-                            echo (new \dokuwiki\Menu\PageMenu())->getListItems('action ', false);
+                            echo (new \dokuwiki\Menu\PageMenu())->getListItems('action ', true);
                         } else {
                             _tpl_pagetools();
                         } ?>
